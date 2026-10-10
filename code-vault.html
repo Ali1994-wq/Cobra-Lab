@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cobra Lab | مخزن الأكواد</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #101e30;
+      --border: #263a50;
+      --text: #e8f0fa;
+      --muted: #9aadc3;
+      --accent: #20c997;
+      --danger: #ff647c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header, .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    h1 { margin-top: 0; color: var(--accent); }
+    h2 { font-size: 20px; }
+    p { line-height: 1.8; }
+    .muted { color: var(--muted); }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+    }
+
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #091522;
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 180px;
+      resize: vertical;
+      direction: ltr;
+      text-align: left;
+    }
+
+    button, .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 10px 4px 0 0;
+      background: var(--accent);
+      color: #061a16;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    button.secondary {
+      background: #263a50;
+      color: var(--text);
+    }
+
+    button.danger {
+      background: var(--danger);
+      color: #25060b;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .toolbar input { flex: 1; min-width: 180px; }
+
+    .entry {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .entry pre {
+      direction: ltr;
+      text-align: left;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      background: #07111f;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      margin: 3px;
+      border-radius: 20px;
+      background: #1b3448;
+      color: #a5f3dc;
+      font-size: 13px;
+    }
+
+    .notice {
+      border-right: 4px solid var(--accent);
+      padding: 10px 14px;
+      background: #0a1926;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 10px; }
+      header, .panel { padding: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <header>
+    <h1>COBRA LAB</h1>
+    <h2>مخزن الأكواد والاسكربتات</h2>
+    <p class="muted">
+      احفظ الأكواد والأوامر والإعدادات والملاحظات البرمجية
+      ونظّمها وابحث فيها واسترجعها عند الحاجة.
+    </p>
+    <a class="button" href="index.html">العودة إلى لوحة التحكم</a>
+  </header>
+
+  <section class="panel">
+    <h2>إضافة عنصر جديد</h2>
+
+    <form id="entryForm">
+      <label for="title">اسم العنصر</label>
+      <input id="title" maxlength="120" required
+             placeholder="مثال: فحص اتصال الخادم">
+
+      <label for="category">نوع العنصر</label>
+      <select id="category">
+        <option value="code">كود برمجي</option>
+        <option value="script">اسكربت</option>
+        <option value="command">أمر طرفية</option>
+        <option value="config">إعدادات</option>
+        <option value="note">ملاحظات</option>
+      </select>
+
+      <label for="language">اللغة أو البيئة</label>
+      <input id="language" maxlength="60"
+             placeholder="مثال: JavaScript أو Bash أو Python">
+
+      <label for="description">الوصف</label>
+      <input id="description" maxlength="500"
+             placeholder="وظيفة الكود أو ملاحظات الاستخدام">
+
+      <label for="content">محتوى الكود أو النص</label>
+      <textarea id="content" required
+                placeholder="الصق الكود هنا..."></textarea>
+
+      <button type="submit">حفظ في المخزن</button>
+      <button type="reset" class="secondary">مسح الحقول</button>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>إدارة المخزن</h2>
+
+    <div class="toolbar">
+      <input id="search" placeholder="ابحث بالاسم أو الوصف أو المحتوى...">
+      <button id="exportBtn" type="button">تصدير نسخة احتياطية</button>
+      <button id="importBtn" type="button" class="secondary">
+        استيراد نسخة
+      </button>
+      <input id="importFile" type="file" accept=".json,application/json"
+             hidden>
+    </div>
+
+    <p id="count" class="muted">عدد العناصر: 0</p>
+    <div id="entries"></div>
+  </section>
+
+  <section class="panel">
+    <h2>معلومات التخزين</h2>
+    <p class="notice">
+      تُحفظ العناصر في التخزين المحلي للمتصفح على هذا الجهاز.
+      لن تظهر تلقائيًا على الأجهزة الأخرى، وقد تُفقد عند مسح بيانات
+      المتصفح. استخدم التصدير لإنشاء نسخة احتياطية بصيغة JSON.
+      لا تحفظ كلمات المرور أو مفاتيح API أو الرموز السرية هنا.
+      الأكواد المحفوظة لا تُنفّذ تلقائيًا.
+    </p>
+  </section>
+
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const STORAGE_KEY = "cobra_lab_code_vault_v1";
+
+  const form = document.getElementById("entryForm");
+  const search = document.getElementById("search");
+  const entriesElement = document.getElementById("entries");
+  const countElement = document.getElementById("count");
+  const importFile = document.getElementById("importFile");
+
+  let entries = loadEntries();
+
+  function loadEntries() {
+    try {
+      const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveEntries() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+      return true;
+    } catch {
+      alert("تعذّر الحفظ. قد تكون مساحة التخزين ممتلئة.");
+      return false;
+    }
+  }
+
+  function makeId() {
+    return Date.now().toString(36) +
+      Math.random().toString(36).slice(2, 9);
+  }
+
+  function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function addButton(parent, text, className, handler) {
+    const button = createElement("button", className, text);
+    button.type = "button";
+    button.addEventListener("click", handler);
+    parent.appendChild(button);
+    return button;
+  }
+
+  function render() {
+    const query = search.value.trim().toLowerCase();
+
+    const filtered = entries.filter(entry => {
+      const text = [
+        entry.title,
+        entry.category,
+        entry.language,
+        entry.description,
+        entry.content
+      ].join(" ").toLowerCase();
+
+      return text.includes(query);
+    });
+
+    countElement.textContent =
+      "عدد العناصر: " + entries.length +
+      " | نتائج البحث: " + filtered.length;
+
+    entriesElement.replaceChildren();
+
+    if (!filtered.length) {
+      entriesElement.appendChild(
+        createElement("p", "muted", "لا توجد عناصر مطابقة.")
+      );
+      return;
+    }
+
+    filtered.forEach(entry => {
+      const card = createElement("article", "entry");
+
+      card.appendChild(createElement("h3", "", entry.title));
+
+      const tags = createElement("div");
+      tags.appendChild(createElement("span", "tag", entry.category));
+      if (entry.language) {
+        tags.appendChild(createElement("span", "tag", entry.language));
+      }
+      card.appendChild(tags);
+
+      if (entry.description) {
+        card.appendChild(
+          createElement("p", "", entry.description)
+        );
+      }
+
+      const pre = createElement("pre");
+      pre.textContent = entry.content;
+      card.appendChild(pre);
+
+      const date = entry.createdAt
+        ? new Date(entry.createdAt).toLocaleString("ar")
+        : "";
+
+      if (date) {
+        card.appendChild(createElement("p", "muted", "تاريخ الإضافة: " + date));
+      }
+
+      addButton(card, "نسخ المحتوى", "", async () => {
+        try {
+          await navigator.clipboard.writeText(entry.content);
+          alert("تم نسخ المحتوى.");
+        } catch {
+          const area = document.createElement("textarea");
+          area.value = entry.content;
+          document.body.appendChild(area);
+          area.select();
+          const copied = document.execCommand("copy");
+          area.remove();
+          alert(copied ? "تم نسخ المحتوى." : "تعذّر النسخ؛ انسخ النص يدويًا.");
+        }
+      });
+
+      addButton(card, "تنزيل TXT", "secondary", () => {
+        downloadFile(
+          safeFilename(entry.title) + ".txt",
+          entry.content,
+          "text/plain;charset=utf-8"
+        );
+      });
+
+      addButton(card, "حذف", "danger", () => {
+        if (!confirm("هل تريد حذف هذا العنصر؟")) return;
+
+        const oldEntries = entries;
+        entries = entries.filter(item => item.id !== entry.id);
+
+        if (saveEntries()) {
+          render();
+        } else {
+          entries = oldEntries;
+        }
+      });
+
+      entriesElement.appendChild(card);
+    });
+  }
+
+  function safeFilename(name) {
+    return (name || "code")
+      .replace(/[\\/:*?"<>|]/g, "_")
+      .slice(0, 80);
+  }
+
+  function downloadFile(filename, content, type) {
+    const blob = new Blob([content], { type });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const title = document.getElementById("title").value.trim();
+    const category = document.getElementById("category").value;
+    const language = document.getElementById("language").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const content = document.getElementById("content").value;
+
+    if (!title || !content.trim()) {
+      alert("أدخل اسم العنصر والمحتوى.");
+      return;
+    }
+
+    const entry = {
+      id: makeId(),
+      title,
+      category,
+      language,
+      description,
+      content,
+      createdAt: new Date().toISOString()
+    };
+
+    entries.unshift(entry);
+
+    if (saveEntries()) {
+      form.reset();
+      render();
+      alert("تم حفظ العنصر في المخزن المحلي.");
+    } else {
+      entries.shift();
+    }
+  });
+
+  search.addEventListener("input", render);
+
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    downloadFile(
+      "cobra-lab-vault-backup.json",
+      JSON.stringify(entries, null, 2),
+      "application/json;charset=utf-8"
+    );
+  });
+
+  document.getElementById("importBtn").addEventListener("click", () => {
+    importFile.click();
+  });
+
+  importFile.addEventListener("change", async () => {
+    const file = importFile.files && importFile.files[0];
+    if (!file) return;
+
+    try {
+      const imported = JSON.parse(await file.text());
+
+      if (!Array.isArray(imported)) {
+        throw new Error("الملف ليس نسخة احتياطية صحيحة.");
+      }
+
+      const valid = imported.every(item =>
+        item &&
+        typeof item.title === "string" &&
+        typeof item.content === "string"
+      );
+
+      if (!valid) {
+        throw new Error("تحتوي النسخة على عناصر غير صالحة.");
+      }
+
+      if (!confirm(
+        "سيتم دمج " + imported.length +
+        " عنصرًا مع العناصر الموجودة. هل تريد المتابعة؟"
+      )) return;
+
+      const existingIds = new Set(entries.map(item => item.id));
+
+      const normalized = imported.map(item => ({
+        id: item.id && !existingIds.has(item.id) ? item.id : makeId(),
+        title: item.title,
+        category: typeof item.category === "string" ? item.category : "code",
+        language: typeof item.language === "string" ? item.language : "",
+        description: typeof item.description === "string" ? item.description : "",
+        content: item.content,
+        createdAt: item.createdAt || new Date().toISOString()
+      }));
+
+      const previous = entries;
+      entries = [...normalized, ...entries];
+
+      if (saveEntries()) {
+        render();
+        alert("تم استيراد النسخة الاحتياطية.");
+      } else {
+        entries = previous;
+      }
+    } catch (error) {
+      alert("فشل الاستيراد: " + error.message);
+    } finally {
+      importFile.value = "";
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+        </html
