@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1730">
+<title>Cobra Lab Pro | لوحة الإدارة</title>
+<style>
+:root{color-scheme:dark;--bg:#081225;--panel:#101f37;--panel2:#142744;--line:#263d5e;--text:#edf4ff;--muted:#9fb2cc;--blue:#48b8f3;--gold:#f4c56a;--red:#ff8794;--green:#63d6ac}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#14294a 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}button,input{font:inherit}button{cursor:pointer}.shell{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}aside{background:#09152a;border-left:1px solid var(--line);padding:22px 16px}.brand{display:flex;align-items:center;gap:12px;padding:6px 8px 25px;border-bottom:1px solid var(--line)}.mark{width:44px;height:44px;display:grid;place-items:center;border:1px solid #31557b;border-radius:14px;background:#173454;font-size:25px}.brand strong{display:block;font-size:17px}.brand small{color:var(--muted)}.nav-label{color:#7890af;font-size:11px;font-weight:700;letter-spacing:.08em;margin:24px 10px 8px}.nav{display:grid;gap:6px}.nav button{border:1px solid transparent;background:transparent;color:#bdcce0;text-align:right;border-radius:10px;padding:11px 12px}.nav button.active,.nav button:hover{background:#152b49;border-color:#284768;color:white}.aside-note{font-size:12px;color:var(--muted);margin:30px 8px 0}.main{min-width:0;padding:24px clamp(14px,3vw,38px)}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:25px}.topbar h1{font-size:clamp(22px,3vw,30px);margin:0}.sub{color:var(--muted);font-size:13px}.status{display:inline-flex;align-items:center;gap:8px;border:1px solid #4d452c;background:#2b2619;color:#f4d58b;border-radius:30px;padding:6px 11px;font-size:12px}.dot{width:7px;height:7px;background:var(--gold);border-radius:50%}.notice{border:1px solid #5b4928;background:#282315;color:#f4dca3;border-radius:13px;padding:14px 16px;font-size:13px;margin-bottom:20px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card,.section{background:linear-gradient(145deg,rgba(20,39,68,.95),rgba(13,28,49,.98));border:1px solid var(--line);border-radius:16px}.card{padding:17px}.card .label{color:var(--muted);font-size:13px}.card .value{font-size:28px;font-weight:750;margin:7px 0}.card .hint{color:#8298b6;font-size:12px}.section{margin-top:18px;padding:19px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}.section h2{font-size:17px;margin:0}.pill{font-size:11px;padding:3px 9px;border-radius:30px;background:#1b3453;color:#a8dfff}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:580px;font-size:13px}th,td{text-align:right;padding:13px 10px;border-bottom:1px solid #233955}th{color:#91a7c3;font-weight:600}td{color:#dce7f6}.empty{text-align:center;color:var(--muted);padding:24px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #355578;border-radius:9px;padding:9px 13px;background:#193656;color:white}.btn:disabled{opacity:.45;cursor:not-allowed}.btn.primary{background:#0879b7;border-color:#1695d7}.login{max-width:440px;margin:24px auto;padding:22px}.login h2{margin:0 0 5px}.login p{font-size:13px;color:var(--muted)}label{display:block;color:#afc0d6;font-size:13px;margin:13px 0 5px}input{width:100%;border:1px solid #304766;background:#09172b;color:white;border-radius:9px;padding:11px}input:focus{outline:2px solid #268cc6;outline-offset:1px}.foot{color:#7188a7;font-size:11px;text-align:center;padding:22px}.hidden{display:none!important}@media(max-width:900px){.shell{grid-template-columns:1fr}aside{border-left:0;border-bottom:1px solid var(--line);padding:12px}.brand{padding:5px 8px 12px}.nav-label,.aside-note{display:none}.nav{display:flex;overflow:auto;padding-top:10px}.nav button{white-space:nowrap}.main{padding:17px}}@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:13px}.card .value{font-size:24px}.section{padding:14px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+  <div class="brand"><div class="mark" aria-hidden="true">🐍</div><div><strong>Cobra Lab Pro</strong><small>لوحة الإدارة</small></div></div>
+  <div class="nav-label">إدارة النظام</div>
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <button class="active" type="button" data-view="overview">نظرة عامة</button>
+    <button type="button" data-view="payments">طلبات الدفع</button>
+    <button type="button" data-view="plans">الباقات والأسعار</button>
+    <button type="button" data-view="audit">سجل التدقيق</button>
+  </nav>
+  <p class="aside-note">واجهة إدارية أولية. العمليات الحساسة ستظل معطلة حتى إعداد المصادقة وسياسات صلاحيات قاعدة البيانات.</p>
+</aside>
+<main class="main">
+  <div class="topbar"><div><h1 id="pageTitle">نظرة عامة</h1><div class="sub">إدارة Cobra Lab VPN وCobra Lab من واجهة واحدة</div></div><span class="status"><span class="dot"></span><span>اتصال قاعدة البيانات غير مُهيّأ</span></span></div>
+  <div class="notice"><strong>وضع آمن:</strong> هذه النسخة لا تتصل بعد بـ Supabase ولا تقرأ أو تغيّر مدفوعات حقيقية. قبول الطلب أو رفضه يسجّل قرار المسؤول فقط؛ لا ينفّذ تحويلًا مصرفيًا ولا يفعّل خدمة VPN تلقائيًا.</div>
+  <section id="overviewView">
+    <div class="grid">
+      <article class="card"><div class="label">الطلبات المعلّقة</div><div class="value">—</div><div class="hint">بانتظار ربط قاعدة البيانات</div></article>
+      <article class="card"><div class="label">طلبات مقبولة</div><div class="value">—</div><div class="hint">لا توجد بيانات محمّلة</div></article>
+      <article class="card"><div class="label">الباقات النشطة</div><div class="value">—</div><div class="hint">لا توجد بيانات محمّلة</div></article>
+      <article class="card"><div class="label">سعر الصرف اليدوي</div><div class="value">—</div><div class="hint">لن يُحدّث تلقائيًا</div></article>
+    </div>
+    <section class="section"><div class="section-head"><h2>آخر طلبات الدفع</h2><span class="pill">عرض توضيحي</span></div><div class="table-wrap"><table><thead><tr><th>رقم الطلب</th><th>العميل</th><th>الباقة</th><th>المبلغ</th><th>الحالة</th></tr></thead><tbody><tr><td colspan="5" class="empty">تظهر الطلبات بعد تهيئة اتصال Supabase والمصادقة وسياسات الوصول.</td></tr></tbody></table></div></section>
+  </section>
+  <section id="paymentsView" class="section hidden"><div class="section-head"><h2>مراجعة طلبات الدفع</h2><span class="pill">غير متصل</span></div><p class="sub">ستُعرض بيانات الطلب وإيصال التحويل هنا بعد التحقق من بنية الجداول والصلاحيات. لا توجد موافقة أو رفض فعلي في هذه النسخة.</p><div class="table-wrap"><table><thead><tr><th>رقم الطلب</th><th>العميل</th><th>وسيلة الدفع</th><th>المبلغ</th><th>الحالة</th><th>الإجراء</th></tr></thead><tbody><tr><td colspan="6" class="empty">لا يمكن تحميل الطلبات قبل إعداد الاتصال الآمن.</td></tr></tbody></table></div><div class="actions"><button class="btn" disabled>قبول الطلب</button><button class="btn" disabled>رفض الطلب</button></div></section>
+  <section id="plansView" class="section hidden"><div class="section-head"><h2>الباقات والأسعار</h2><span class="pill">تعديل معطّل حتى الاتصال</span></div><p class="sub">سيتم جلب الباقات من قاعدة البيانات الحالية. سعر الصرف سيبقى يدويًا، ولن يتم إنشاء جداول جديدة أو تعديل المخطط من الواجهة.</p><div class="table-wrap"><table><thead><tr><th>اسم الباقة</th><th>المدة</th><th>السعر</th><th>الحالة</th></tr></thead><tbody><tr><td colspan="4" class="empty">لا توجد بيانات محمّلة.</td></tr></tbody></table></div></section>
+  <section id="auditView" class="section hidden"><div class="section-head"><h2>سجل التدقيق</h2><span class="pill">قراءة فقط</span></div><p class="sub">سيُسجّل هوية المسؤول والوقت والقرار ورقم الطلب بعد إعداد آلية تدقيق موثوقة.</p><div class="table-wrap"><table><thead><tr><th>الوقت</th><th>المسؤول</th><th>الحدث</th><th>مرجع العملية</th></tr></thead><tbody><tr><td colspan="4" class="empty">لا توجد سجلات محمّلة.</td></tr></tbody></table></div></section>
+  <section id="loginView" class="section login hidden"><h2>دخول المسؤول</h2><p>سيتم تفعيل تسجيل الدخول عبر Supabase Auth بعد إعداد المشروع وسياسات صلاحيات المسؤول. لا تدخل بيانات اعتماد في هذه الواجهة الأولية.</p><label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="username" placeholder="admin@example.com" disabled><label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••" disabled><div class="actions" style="margin-top:14px"><button class="btn primary" disabled>تسجيل الدخول</button></div></section>
+  <div class="foot">Cobra Lab Pro · نموذج واجهة أولي · لا ينفذ أي إجراء مالي فعلي</div>
+</main>
+</div>
+<script>
+"use strict";
+const views={overview:"نظرة عامة",payments:"طلبات الدفع",plans:"الباقات والأسعار",audit:"سجل التدقيق"};
+document.querySelectorAll("[data-view]").forEach(button=>button.addEventListener("click",()=>{
+  const view=button.dataset.view;
+  document.querySelectorAll("[data-view]").forEach(item=>item.classList.toggle("active",item===button));
+  Object.keys(views).forEach(key=>document.getElementById(key+"View").classList.toggle("hidden",key!==view));
+  document.getElementById("loginView").classList.add("hidden");
+  document.getElementById("pageTitle").textContent=views[view];
+}));
+</script>
+</body>
+</html>
